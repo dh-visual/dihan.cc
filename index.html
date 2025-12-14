@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dihan 邸涵</title>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
+</head>
+<body>
+
+<!-- ✅ 新增：真正的顶部锚点（放在 header 前面） -->
+  <div id="top"></div>
+
+  <!-- 顶部导航栏 -->
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <!-- 左侧 LOGO -->
+    <a href="/" class="site-logo" aria-label="回到首页">
+      <img src="assets/images/logo.png" alt="Dihan Logo" />
+    </a>
+
+  <div class="header-icons">
+  <!-- 语言切换 -->
+  <div class="lang-switch" id="langSwitch">
+    <button class="icon-btn icon-lang" id="langBtn" aria-label="切换语言" type="button">
+      <img src="assets/images/icon-lang.png" alt="切换语言" />
+    </button>
+
+    <ul class="lang-menu" id="langMenu" aria-label="语言列表">
+      <li><button class="lang-item" type="button" data-lang="zh-CN">中文</button></li>
+      <li><button class="lang-item" type="button" data-lang="en">English</button></li>
+      <li><button class="lang-item" type="button" data-lang="it">Italiano</button></li>
+    </ul>
+  </div>
+
+  <!-- 目录按钮 -->
+  <button class="icon-btn icon-menu" aria-label="打开导航菜单">
+    <img src="assets/images/icon-menu.png" alt="导航菜单" />
+  </button>
+</div>
+
+  </div>
+</header>
+
+<!-- 目录页：整屏黑色（默认隐藏，点击右上角目录按钮滑出） -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <button class="menu-overlay__close" type="button" aria-label="关闭目录">
+    <img class="menu-overlay__close-icon" src="assets/images/icon-close.png" alt="">
+  </button>
+
+  <!-- 左侧大菜单 -->
+  <nav class="menu-panel" aria-label="站内目录">
+  <a class="menu-link" href="#top" data-close-menu data-i18n="menu_home">主页</a>
+  <a class="menu-link" href="#about" data-close-menu data-i18n="menu_about">关于</a>
+  <a class="menu-link" href="#works" data-close-menu data-i18n="menu_works">作品</a>
+  <a class="menu-link" href="#notes" data-close-menu data-i18n="menu_notes">杂谈</a>
+  <a class="menu-link" href="#contact" data-close-menu data-i18n="menu_contact">联络</a>
+</nav>
+
+  <!-- 底部外链栏 -->
+  <div class="menu-bottom">
+<a class="menu-bottom__item"
+   href="https://www.youtube.com/@GiovanepoliedricoHan"
+   target="_blank"
+   rel="noopener noreferrer">
+  <span>YOUTUBE</span>
+  <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+</a>
+
+<a class="menu-bottom__item"
+   href="https://www.instagram.com/dihan.mi"
+   target="_blank"
+   rel="noopener noreferrer">
+  <span>INSTAGRAM</span>
+  <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+</a>
+
+<a class="menu-bottom__item"
+   href="https://space.bilibili.com/609838999"
+   target="_blank"
+   rel="noopener noreferrer">
+  <span data-i18n="ext_bilibili">哔哩哔哩</span>
+  <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+</a>
+
+<a class="menu-bottom__item"
+   href="https://dh-visual.github.io/my-restaurant-site/"
+   target="_blank"
+   rel="noopener noreferrer">
+  <span data-i18n="ext_more">更多链接</span>
+  <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+</a>
+
+</div>
+
+</div> <!-- ✅ 这里就关掉 overlay -->
+
+  <!-- 整个页面容器 -->
+  <main>
+
+    <!-- 英雄区：全屏背景图 + 左下角悬浮文字 -->
+    <section class="hero" id="hero">
+      <img src="assets/images/hero.jpg" alt="真实与创造" class="hero-image" />
+
+      <div class="hero-title">真实，与创造</div>
+    </section>
+    <!-- 空白缓冲区（用于滚动时淡出英雄图） -->
+<section class="spacer"></section>
+<section class="about" id="about">
+  <div class="about-inner">
+    <!-- 左侧大标题 -->
+    <div class="about-left">
+      <h2 class="about-title" data-i18n="about_title">我是邸涵，</h2>
+    </div>
+
+    <!-- 右侧文字说明 -->
+    <div class="about-right">
+      <p class="about-tagline" data-i18n-html="about_tagline"></p>
+<p class="about-p1" data-i18n-html="about_p1"></p>
+<p class="about-p2" data-i18n-html="about_p2"></p>
+<p class="about-p3" data-i18n="about_p3"></p> <!-- 这句如果不需要br，用 text 也行 -->
+
+      <!-- 可选按钮：不想要就整块删掉 -->
+<a href="#about" class="about-button-split">
+  <span class="btn-text" data-i18n="about_btn">更多关于我</span>
+  <span class="btn-arrow"><span class="arrow-icon">→</span></span>
+</a>
+    </div>
+  </div>
+</section> <!-- about 结束 -->
+
+<!-- 我的故事：在自我介绍区和能力区之间 -->
+<section class="my-story-section">
+  <h2 class="my-story-title" data-i18n="story_title">我的故事</h2>
+
+  <div class="my-story-image-wrapper">
+  <!-- 第一张 -->
+  <div class="my-story-frame my-story-frame--1">
+    <img src="assets/images/my-story-1.jpg" srcset=" assets/images/my-story-1-mobile.jpg 768w, assets/images/my-story-1.jpg 1920w " sizes="100vw" class="my-story-image" alt="我的故事 1"/>
+    <div class="my-story-caption" data-i18n="story_cap1">2021.10-2024.2 视觉艺术与策展专业学生</div>
+  </div>
+
+  <!-- 第二张 -->
+  <div class="my-story-frame my-story-frame--2">
+    <img src="assets/images/my-story-2.jpg" srcset=" assets/images/my-story-2-mobile.jpg 768w, assets/images/my-story-2.jpg 1920w " sizes="100vw" class="my-story-image" alt="我的故事 2"/>
+    <div class="my-story-caption" data-i18n="story_cap2">2023.1-2024.6 视觉平面与室内空间设计师</div>
+  </div>
+
+  <!-- 第三张 -->
+  <div class="my-story-frame my-story-frame--3">
+    <img src="assets/images/my-story-3.jpg" srcset=" assets/images/my-story-3-mobile.jpg 768w, assets/images/my-story-3.jpg 1920w " sizes="100vw" class="my-story-image" alt="我的故事 3"/>
+    <div class="my-story-caption" data-i18n="story_cap3">2024.10-2025.6 餐厅服务员</div>
+  </div>
+
+  <!-- 第四张 -->
+  <div class="my-story-frame my-story-frame--4">
+    <img src="assets/images/my-story-4.jpg" srcset=" assets/images/my-story-4-mobile.jpg 768w, assets/images/my-story-4.jpg 1920w " sizes="100vw" class="my-story-image" alt="我的故事 4"/>
+    <div class="my-story-caption" data-i18n="story_cap4">2025.7-至今 光伏工程项目经理</div>
+  </div>
+</div>
+</section>
+
+<section class="services-section">
+  <div class="services-header">
+    <h1 data-i18n="services_title">一人内容制造机</h1>
+    <p data-i18n="services_subtitle">独立完成创作、技术与表达，把复杂世界拆解为可执行的作品。</p>
+  </div>
+
+  <!-- ✅ 新增：两列网格容器 -->
+  <div class="services-grid">
+    <div class="service-card">
+      <h2 data-i18n="svc1_title">真实记录 · 视频创作</h2>
+      <p data-i18n-html="svc1_desc">
+        我用视频记录真实生活与工作现场：设计师、体力劳动、跨国生活与学习。<br />
+        不表演成功，只呈现过程，让影像有重量。
+      </p>
+    </div>
+
+    <div class="service-card">
+      <h2 data-i18n="svc2_title">3D 与视觉建模</h2>
+      <p data-i18n-html="svc2_desc">使用 Blender 等工具进行建模与动画实验，从空间、结构到光影，<br />
+        把抽象想法变成可被理解的视觉形态。</p>
+    </div>
+
+    <div class="service-card">
+      <h2 data-i18n="svc3_title">网站与数字呈现</h2>
+      <p data-i18n-html="svc3_desc">独立完成个人与项目网站：结构、视觉与代码同步思考。<br />
+        网站不是模板堆砌，而是清晰表达自我的界面。</p>
+    </div>
+
+    <div class="service-card">
+      <h2 data-i18n="svc4_title">跨领域学习能力</h2>
+      <p data-i18n-html="svc4_desc">从设计、视频到语言与工程现场，我习惯在陌生领域快速建立认知结构，<br />
+        把“不会”变成可执行的下一步。</p>
+    </div>
+
+    <div class="service-card">
+      <h2 data-i18n="svc5_title">跨文化与语言实践</h2>
+      <p data-i18n-html="svc5_desc">长期在意大利生活与学习，在真实交流中使用语言，而不是停留在课本。<br />
+        语言对我来说，是进入世界的工具。</p>
+    </div>
+
+    <div class="service-card">
+      <h2 data-i18n="svc6_title">长期视角与自我构建</h2>
+      <p data-i18n-html="svc6_desc">不追求速成身份，也不急于被定义。我通过持续创作与学习，<br />
+        慢慢搭建属于自己的能力体系与人生路径。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 账号推广区块：底部渐变背景图 -->
+<section class="account-section">
+  <div class="account-inner">
+    <div class="account-image-mask">
+  <img
+    src="assets/images/account-gradient.jpg"
+    alt="账号推广背景"
+    class="account-image"
+  />
+
+  <!-- 中间的“头像 + 按钮”整体块 -->
+  <div class="account-center-block">
+    <img
+      src="assets/images/dihan-avatar.png"
+      alt="Dihan Avatar"
+      class="account-avatar"
+    />
+
+  <a href="https://www.xiaohongshu.com/user/profile/301579652"
+   class="account-cta-button"
+   target="_blank"
+   rel="noopener noreferrer">
+  在这里找到我
+</a>
+
+<p class="account-quote">
+  山长水阔，得见于斯；人海星河，幸会于此
+</p>
+
+<div class="account-socials">
+
+  <a href="https://www.youtube.com/@GiovanepoliedricoHan"
+     class="social-item"
+     target="_blank"
+     rel="noopener noreferrer">
+    <img src="assets/icons/youtube.svg" alt="YouTube" />
+    <span>YouTube</span>
+  </a>
+
+  <a href="https://www.instagram.com/dihan.mi"
+     class="social-item"
+     target="_blank"
+     rel="noopener noreferrer">
+    <img src="assets/icons/instagram.svg" alt="Instagram" />
+    <span>Instagram</span>
+  </a>
+
+  <a href="https://space.bilibili.com/609838999"
+   class="social-item"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img src="assets/icons/bilibili.svg" alt="哔哩哔哩" />
+  <span data-i18n="social_bilibili">哔哩哔哩</span>
+</a>
+
+<a href="https://dh-visual.github.io/my-restaurant-site/"
+   class="social-item"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img src="assets/icons/more.svg" alt="更多链接" />
+  <span data-i18n="social_more">更多链接</span>
+</a>
+
+</div>
+
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="footer-icon-section">
+  <a href="#" class="footer-icon-btn">
+    <img src="assets/icons/door.svg" alt="更多" />
+  </a>
+</section>
+
+<nav class="hero-nav">
+  <a class="menu-link" href="#top" data-close-menu data-i18n="menu_home">主页</a>
+  <a class="menu-link is-disabled"href="javascript:void(0)"aria-disabled="true"data-i18n="menu_about">关于</a>
+  <a class="menu-link" href="#works" data-i18n="menu_works">作品</a>
+  <a class="menu-link" href="#notes" data-i18n="menu_notes">杂谈</a>
+  <a class="menu-link" href="#contact" data-i18n="menu_contact">联络</a>
+</nav>
+
+<section class="marquee-section">
+  <div class="marquee-track">
+    <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+    <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+  </div>
+</section>
+
+  <!-- 载入滚动动画脚本 -->
+  <script src="scripts/main.js"></script>
+</body>
+</html>
