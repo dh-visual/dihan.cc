@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>关于 · Dihan 邸涵</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 样式（与首页完全一致） -->
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
+</head>
+
+<body>
+
+<div id="top"></div>
+
+<!-- ======================
+     顶部导航栏（原样复制）
+====================== -->
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <!-- 左侧 LOGO -->
+    <a href="index.html" class="site-logo" aria-label="回到首页">
+      <img src="assets/images/logo.png" alt="Dihan Logo" />
+    </a>
+
+    <!-- 右侧图标 -->
+    <div class="header-icons">
+
+      <!-- 语言切换 -->
+      <div class="lang-switch" id="langSwitch">
+        <button class="icon-btn icon-lang" id="langBtn" type="button" aria-label="切换语言">
+          <img src="assets/images/icon-lang.png" alt="切换语言" />
+        </button>
+
+        <ul class="lang-menu" id="langMenu">
+          <li><button class="lang-item" type="button" data-lang="zh-CN">中文</button></li>
+          <li><button class="lang-item" type="button" data-lang="en">English</button></li>
+          <li><button class="lang-item" type="button" data-lang="it">Italiano</button></li>
+        </ul>
+      </div>
+
+      <!-- 菜单按钮 -->
+      <button class="icon-btn icon-menu" type="button" aria-label="打开导航菜单">
+        <img src="assets/images/icon-menu.png" alt="导航菜单" />
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- ======================
+     整屏菜单 Overlay（原样复制）
+====================== -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+
+  <button class="menu-overlay__close" type="button" aria-label="关闭目录">
+    <img class="menu-overlay__close-icon" src="assets/images/icon-close.png" alt="">
+  </button>
+
+    <nav class="menu-panel" aria-label="站内目录">
+      <a class="menu-link" href="index.html" data-close-menu data-i18n="menu_home">主页</a>
+      <a class="menu-link" href="about.html" data-close-menu data-i18n="menu_about">关于</a>
+      <a class="menu-link is-active" href="works.html" data-close-menu data-i18n="menu_works">作品</a>
+      <a class="menu-link" href="notes.html" data-close-menu data-i18n="menu_notes">杂谈</a>
+      <a class="menu-link" href="contact.html" data-close-menu data-i18n="menu_contact">联系</a>
+    </nav>
+
+  <div class="menu-bottom">
+    <a class="menu-bottom__item"
+       href="https://www.youtube.com/@GiovanepoliedricoHan"
+       target="_blank" rel="noopener noreferrer">
+      <span>YOUTUBE</span>
+      <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+    </a>
+
+    <a class="menu-bottom__item"
+       href="https://www.instagram.com/dihan.mi"
+       target="_blank" rel="noopener noreferrer">
+      <span>INSTAGRAM</span>
+      <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+    </a>
+
+    <a class="menu-bottom__item"
+       href="https://space.bilibili.com/609838999"
+       target="_blank" rel="noopener noreferrer">
+      <span>哔哩哔哩</span>
+      <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+    </a>
+
+    <a class="menu-bottom__item"
+       href="works-web.html"
+       target="_blank" rel="noopener noreferrer">
+      <span>更多链接</span>
+      <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+    </a>
+  </div>
+
+</div>
+
+<!-- ======================
+     About 页面内容
+====================== -->
+<main class="about-page">
+
+  <!-- 首屏：图片 + 文字 PNG -->
+  <section class="about-hero">
+    <div class="about-hero-inner">
+
+      <div class="about-hero-word left">
+        <img class="glow-img" src="assets/images/about-dihan.png" alt="Dihan">
+      </div>
+
+      <div class="about-hero-photo motion-stage">
+        <div class="motion-box">
+        <img
+          src="assets/images/about-photo.jpg"
+          alt="Dihan Photo"
+          class="motion-img"
+        />
+      </div>
+     </div>
+
+      <div class="about-hero-word right">
+      <div class="about-hero-text">邸涵</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 下拉文字介绍 -->
+  <section class="about-text">
+    <div class="about-text-inner">
+
+      <p>
+        嗨！我是 <span class="hl">邸涵（DiHan）</span> 。
+      </p>
+
+      <p>
+        独立创作者，崇尚 <span class="hl">“现代文艺复兴人” </span>的生存方式，
+        通过自学与实践，将复杂问题转化为可执行的方案。
+      </p>
+
+      <p>
+        创作来自真实经验，
+        不追求姿态，只关注
+        <span class="hl">真实、具体的东西</span>。
+      </p>
+
+      <p>
+        当方向模糊时，
+        我把走过的过程整理在这里，留给自己，也留给时间。
+      </p>
+
+    </div>
+  </section>
+
+    <!-- ======================
+       新区块：左侧全屏 sticky 轮播 + 右侧长文本
+  ====================== -->
+  <section class="about-split-story" id="about-split-story">
+    <div class="about-split-story__inner">
+
+      <!-- 左栏：整屏图片轮播（sticky） -->
+      <aside class="about-split-story__media" aria-label="Story images">
+        <div class="about-split-story__stage">
+          <!-- ✅ 你把这四张图放到对应路径，或改 src -->
+          <img class="about-split-story__img is-active" src="assets/images/space-01.jpg" alt="">
+          <img class="about-split-story__img" src="assets/images/space-02.jpg" alt="">
+          <img class="about-split-story__img" src="assets/images/space-03.jpg" alt="">
+          <img class="about-split-story__img" src="assets/images/space-04.jpg" alt="">
+        </div>
+      </aside>
+
+      <!-- 右栏：长文字（比左栏更高更长） -->
+      <div class="about-split-story__text">
+
+        <p>我并不是一个从一开始就目标清晰的人。</p>
+        <p>相反，我更像是在不断试错中，逐渐确认自己适合什么、不适合什么。
+           许多选择并非出于笃定，而是在一次次现实反馈中，被迫修正方向、调整位置。</p>
+        <p>我最早就是美术生，接受的是绘画训练。那时并没有明确的职业设想，也谈不上所谓的“规划”，
+           只是对“如何观看”“如何构成画面”产生了兴趣。
+           在很长一段时间里，安静地画画、观察事物的结构、比例与关系，
+           是我理解世界、建立秩序的一种方式。</p>
+        <p>后来进入大学，学习室内设计与展览相关方向。
+           这一阶段，我第一次系统性地意识到：
+           创作并不只是审美或情绪的输出，而是一种需要被组织、被理解、被执行的能力。
+           空间、尺度、结构、逻辑，以及它们如何回应功能与现实需求，
+           逐渐成为我思考的核心。
+           也正是在这一时期，我开始系统地学习并使用 3D 建模，将抽象设想转化为可视、可验证的方案。</p>
+        <p>本科毕业后，我选择前往意大利继续学习，在研究生阶段主修视觉艺术与策展研究。
+           相比单一媒介的创作，这一阶段更强调语境、叙事、观看方式与公共呈现。
+           从平面到空间，从艺术到实用，从理念到落实，我完成了大量课程作业与个人习作，
+           在不同尺度与语境中，接受了较为全面的视觉艺术训练。</p>
+        <p>也正是在这一过程中，我第一次真正意识到：
+           创作并不只存在于狭义的“艺术语境”，
+           它同样存在于现实生活、工作系统以及人与人之间的沟通之中。
+           作品不只是被完成的对象，
+           更是一种被放置、被理解、被使用，并最终进入现实的结果。</p>
+        <p>在意大利的生活并不轻松。
+           我一边学习，一边工作。
+           从研二开学开始，除去课程时间，我几乎全职在一家设计工作室实习，
+           参与项目推进、建模与方案执行。</p>
+        <p>这是一家规模不大的公司，但并不是一份简单的工作。
+          真实项目有其复杂度与进度要求。
+          我与客户沟通，与同事协作，学习如何通过空间回应需求、呈现效果；
+          我参与材料采购，前往施工现场，跟进项目从设计到落地的完整流程。
+          我亲眼看着一个设计从需求到模型，从图纸到物料，从开工到开业，
+          在现实中一点点成形。
+          那一年多的时间里，我确实学到了很多，也被现实充分锻炼。</p>
+        <p>但这段经历并非只有成长。
+          作为一个崇尚能力、信奉多劳多得的人，我曾以为只要持续付出，就一定会得到相应的回报。
+          现实给我上了一堂并不轻松的课。
+          在多次提出希望获得一份正式合同却始终被敷衍回应之后，我选择离开。</p>
+        <p>短暂回国后，我再次回到意大利。这一次，我没有继续寻找艺术或设计相关工作，
+          而是直接进入餐厅，从帮厨和服务员做起。
+          这是一份辛苦却简单、合同清晰、报酬稳定的工作。
+          我一方面承受着来自社会与家庭的压力，面对体力劳动与高度重复的日常；
+          另一方面，也在这里结识了来自不同国家、背景各异的人。</p>
+        <p>那段时间里，我刻意减少过度思考，把注意力放在眼前的事务上。
+          我乐于与朋友、邻居、同事和客人交流，
+          观察世界的丰富与参差，也珍惜那些微小却真实的幸福。
+          这并不是一份我计划长期从事的工作，
+          但它是一段让我感到踏实、满足，也不会后悔的时光。</p>
+        <p>回头看，这些看似分裂的经历，却在某种程度上构成了一条连续的现实路径。
+          它们让我重新理解“工作”这件事——
+          它不仅关乎能力本身，更关乎所处的位置、所面对的环境，以及最终做出的选择。
+          这些经历并没有让我远离创作，反而让我对“真实”产生了更强的执念。</p>
+        <p>我开始用视频记录生活，用网站整理自己走过的路径与判断。
+          不再追求姿态，也不急于为自己定义身份，
+          而是专注于一件事：
+          把经历沉淀下来，让它们变得清晰、可复用、可被他人理解。</p>
+        <p>2025 年 7 月回国之后，我开始协助家里参与光伏工程项目的相关工作。
+          从设计与视觉系统，进一步进入工程、项目与商业语境，
+          这对我来说是一次重要的转向。
+          工程并不提供浪漫叙事，但它迫使人直面现实：
+          成本、效率、风险、协作，以及长期的可持续性。</p>
+        <p>这也是我从“执行者”逐步走向“参与经营与判断”的开始。
+          我仍然在学习阶段，但直觉告诉我，
+          这很可能是一件我会长期投入、并认真对待的事情。</p>
+        <p>现在的我，既是创作者，也是学习者。
+          我做设计、建模与影像记录，也在不断学习商业与现实运作的方式。
+          我相信真正有价值的创作，并不是来自“天赋叙事”，
+          而是来自长期的投入、反复的修正，以及对现实保持诚实的态度。</p>
+        <p>这个网站，并不是结论。
+          它更像是一份持续更新的记录——
+          记录我如何在现实中行走、学习与创造，
+          也记录我如何一步步成为现在的自己。</p>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- ======================
+       新区块：我的信条
+  ====================== -->
+  <section class="about-gene" id="about-gene">
+    <div class="about-gene__inner">
+      <div class="about-gene__kicker">我的信条</div>
+
+      <div class="about-gene__stack">
+        <div class="about-gene__card">感受真实</div>
+        <div class="about-gene__card">动手创造</div>
+        <div class="about-gene__card">无限进步</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================
+  新区块：时间轴（Hover 右侧 -> 左侧出现对应图片）
+====================== -->
+<section class="about-timeline" id="about-timeline">
+  <div class="about-timeline__inner">
+
+    <!-- 左侧：大标题 + 预览图 -->
+    <div class="about-timeline__left">
+      <h2 class="about-timeline__title about-title">时间轴</h2>
+      <div class="about-timeline__preview" aria-hidden="true">
+        <img class="about-timeline__preview-img" src="" alt="">
+      </div>
+    </div>
+
+    <!-- 右侧：条目列表 -->
+    <div class="about-timeline__right" id="timelineList">
+
+      <div class="timeline-item" data-img="assets/images/timeline-2025.jpg">
+        <div class="timeline-item__role">现实参与者</div>
+        <div class="timeline-item__main">回国后进入光伏工程领域，开始学习项目运作与商业逻辑</div>
+        <div class="timeline-item__year">2025</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2024.jpg">
+        <div class="timeline-item__role">生活观察者</div>
+        <div class="timeline-item__main">在意大利餐厅工作，在真实劳动中重新理解社会与人生</div>
+        <div class="timeline-item__year">2024</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2023.jpg">
+        <div class="timeline-item__role">独立探索者</div>
+        <div class="timeline-item__main">离开既定路径，重新寻找适合自己的方向与位置</div>
+        <div class="timeline-item__year">2023</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2022.jpg">
+        <div class="timeline-item__role">项目执行者</div>
+        <div class="timeline-item__main">在意大利设计公司高强度实习，参与真实项目落地</div>
+        <div class="timeline-item__year">2022</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2021.jpg">
+        <div class="timeline-item__role">研究生</div>
+        <div class="timeline-item__main">赴意大利攻读视觉艺术与策展研究</div>
+        <div class="timeline-item__year">2021</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2020.jpg">
+        <div class="timeline-item__role">设计学习者</div>
+        <div class="timeline-item__main">完成本科训练，深化3D建模与空间表达能力</div>
+        <div class="timeline-item__year">2020</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2019.jpg">
+        <div class="timeline-item__role">大学生</div>
+        <div class="timeline-item__main">系统学习室内设计与展览空间设计</div>
+        <div class="timeline-item__year">2017</div>
+      </div>
+
+      <div class="timeline-item" data-img="assets/images/timeline-2018.jpg">
+        <div class="timeline-item__role">美术生</div>
+        <div class="timeline-item__main">以绘画训练建立最初的审美与观察力</div>
+        <div class="timeline-item__year">2013</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="account-section">
+  <div class="account-inner">
+    <div class="account-image-mask">
+  <img
+    src="assets/images/account-gradient.jpg"
+    alt="账号推广背景"
+    class="account-image"
+  />
+
+  <!-- 中间的“头像 + 按钮”整体块 -->
+  <div class="account-center-block">
+    <img
+      src="assets/images/dihan-avatar.png"
+      alt="Dihan Avatar"
+      class="account-avatar"
+    />
+
+  <a href="https://www.xiaohongshu.com/user/profile/301579652"
+   class="account-cta-button"
+   target="_blank"
+   rel="noopener noreferrer">
+  在这里找到我
+</a>
+
+<p class="account-quote">
+  山长水阔，得见于斯；人海星河，幸会于此
+</p>
+
+<div class="account-socials">
+
+  <a href="https://www.youtube.com/@GiovanepoliedricoHan"
+     class="social-item"
+     target="_blank"
+     rel="noopener noreferrer">
+    <img src="assets/icons/youtube.svg" alt="YouTube" />
+    <span>YouTube</span>
+  </a>
+
+  <a href="https://www.instagram.com/dihan.mi"
+     class="social-item"
+     target="_blank"
+     rel="noopener noreferrer">
+    <img src="assets/icons/instagram.svg" alt="Instagram" />
+    <span>Instagram</span>
+  </a>
+
+  <a href="https://space.bilibili.com/609838999"
+   class="social-item"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img src="assets/icons/bilibili.svg" alt="哔哩哔哩" />
+  <span data-i18n="social_bilibili">哔哩哔哩</span>
+</a>
+
+<a href="works-web.html"
+   class="social-item"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img src="assets/icons/more.svg" alt="更多链接" />
+  <span data-i18n="social_more">更多链接</span>
+</a>
+
+</div>
+
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="footer-icon-section">
+  <a href="#" class="footer-icon-btn">
+    <img src="assets/icons/door.svg" alt="更多" />
+  </a>
+</section>
+
+    <nav class="hero-nav">
+      <a class="menu-link" href="index.html">主页</a>
+      <a class="menu-link" href="about.html">关于</a>
+      <a class="menu-link" href="works.html">作品</a>
+      <a class="menu-link" href="notes.html">杂谈</a>
+      <a class="menu-link" href="contact.html">联系</a>
+    </nav>
+
+<section class="marquee-section">
+  <div class="marquee-track">
+    <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+    <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+  </div>
+</section>
+
+</main>
+
+<!-- JS（必须保留） -->
+<script src="scripts/main.js"></script>
+</body>
+</html>
+

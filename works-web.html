@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>数字系统 | Works | Dihan 邸涵</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
+</head>
+
+<body class="page-works page-works-space">
+  <div id="top"></div>
+
+  <!-- ✅ 导航栏：与 works.html 保持一致 -->
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <a href="index.html" class="site-logo" aria-label="回到首页">
+        <img src="assets/images/logo.png" alt="Dihan Logo" />
+      </a>
+
+      <div class="header-icons">
+        <!-- 语言切换 -->
+        <div class="lang-switch" id="langSwitch">
+          <button class="icon-btn icon-lang" id="langBtn" aria-label="切换语言" type="button">
+            <img src="assets/images/icon-lang.png" alt="切换语言" />
+          </button>
+
+          <ul class="lang-menu" id="langMenu" aria-label="语言列表">
+            <li><button class="lang-item" type="button" data-lang="zh-CN">中文</button></li>
+            <li><button class="lang-item" type="button" data-lang="en">English</button></li>
+            <li><button class="lang-item" type="button" data-lang="it">Italiano</button></li>
+          </ul>
+        </div>
+
+        <!-- 目录按钮 -->
+        <button class="icon-btn icon-menu" aria-label="打开导航菜单" type="button">
+          <img src="assets/images/icon-menu.png" alt="导航菜单" />
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ✅ 目录页：与 works.html 保持一致（作品页高亮仍然是 Works） -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <button class="menu-overlay__close" type="button" aria-label="关闭目录">
+      <img class="menu-overlay__close-icon" src="assets/images/icon-close.png" alt="">
+    </button>
+
+    <nav class="menu-panel" aria-label="站内目录">
+      <a class="menu-link" href="index.html" data-close-menu data-i18n="menu_home">主页</a>
+      <a class="menu-link" href="about.html" data-close-menu data-i18n="menu_about">关于</a>
+      <a class="menu-link is-active" href="works.html" data-close-menu data-i18n="menu_works">作品</a>
+      <a class="menu-link" href="notes.html" data-close-menu data-i18n="menu_notes">杂谈</a>
+      <a class="menu-link" href="contact.html" data-close-menu data-i18n="menu_contact">联系</a>
+    </nav>
+
+    <div class="menu-bottom">
+      <a class="menu-bottom__item"
+        href="https://www.youtube.com/@GiovanepoliedricoHan"
+        target="_blank" rel="noopener noreferrer">
+        <span>YOUTUBE</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+
+      <a class="menu-bottom__item"
+        href="https://www.instagram.com/dihan.mi"
+        target="_blank" rel="noopener noreferrer">
+        <span>INSTAGRAM</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+
+      <a class="menu-bottom__item"
+        href="https://space.bilibili.com/609838999"
+        target="_blank" rel="noopener noreferrer">
+        <span data-i18n="ext_bilibili">哔哩哔哩</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+
+      <a class="menu-bottom__item"
+        href="works-web.html"
+        target="_blank" rel="noopener noreferrer">
+        <span data-i18n="ext_more">更多链接</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <!-- ✅ 二级列表页：数字系统 -->
+    <section class="works-section" id="works-space">
+      <div class="works-inner">
+
+    <!-- ✅ 只改这一句：把总览 intro 改为分类名 -->
+        <p class="works-intro">数字系统</p>
+
+    <!-- ✅ 这里放“空间类项目”卡片（保持 works 页同样布局） -->
+    <div class="works-grid">
+
+      <a class="work-card" href="https://dh-visual.github.io/my-restaurant-site/">
+        <img src="assets/images/web-01.jpg" alt="网站项目 01" />
+        <div class="work-meta">
+          <span class="work-title">网站项目 01</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.dihan.cc/">
+        <img src="assets/images/web-02.jpg" alt="网站项目 02" />
+        <div class="work-meta">
+          <span class="work-title">网站项目 02</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.jitaipv.cn/">
+        <img src="assets/images/web-03.jpg" alt="网站项目 03" />
+        <div class="work-meta">
+         <span class="work-title">网站项目 03</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.gitaipv.cn/">
+        <img src="assets/images/web-04.jpg" alt="网站项目 04" />
+        <div class="work-meta">
+          <span class="work-title">网站项目 04</span>
+        </div>
+      </a>
+
+    </div>
+
+      </div>
+    </section>
+
+    <!-- 页脚：图标 -->
+    <section class="footer-icon-section">
+      <a href="#" class="footer-icon-btn">
+        <img src="assets/icons/door.svg" alt="更多" />
+      </a>
+    </section>
+
+    <!-- 底部文字导航 -->
+    <nav class="hero-nav">
+      <a class="menu-link" href="index.html">主页</a>
+      <a class="menu-link" href="about.html">关于</a>
+      <a class="menu-link" href="works.html">作品</a>
+      <a class="menu-link" href="notes.html">杂谈</a>
+      <a class="menu-link" href="contact.html">联系</a>
+    </nav>
+
+    <!-- 跑马灯 -->
+    <section class="marquee-section">
+      <div class="marquee-track">
+        <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+        <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ 继续用同一个 main.js，让菜单/语言切换生效 -->
+  <script src="scripts/main.js"></script>
+</body>
+</html>

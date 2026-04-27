@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>联系我 | Dihan 邸涵</title>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
+</head>
+
+<body>
+
+  <!-- 顶部导航栏：与首页同款 -->
+  <header class="site-header">
+    <div class="site-header__inner">
+
+      <!-- 左侧 LOGO -->
+    <a href="index.html" class="site-logo" aria-label="回到首页">
+      <img src="assets/images/logo.png" alt="Dihan Logo" />
+    </a>
+
+      <div class="header-icons">
+        <!-- 语言切换 -->
+        <div class="lang-switch" id="langSwitch">
+          <button class="icon-btn icon-lang" id="langBtn" aria-label="切换语言" type="button">
+            <img src="assets/images/icon-lang.png" alt="切换语言" />
+          </button>
+
+          <ul class="lang-menu" id="langMenu" aria-label="语言列表">
+            <li><button class="lang-item" type="button" data-lang="zh-CN">中文</button></li>
+            <li><button class="lang-item" type="button" data-lang="en">English</button></li>
+            <li><button class="lang-item" type="button" data-lang="it">Italiano</button></li>
+          </ul>
+        </div>
+
+        <!-- 目录按钮 -->
+        <button class="icon-btn icon-menu" aria-label="打开导航菜单">
+          <img src="assets/images/icon-menu.png" alt="导航菜单" />
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 目录页：与首页同款 -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <button class="menu-overlay__close" type="button" aria-label="关闭目录">
+      <img class="menu-overlay__close-icon" src="assets/images/icon-close.png" alt="">
+    </button>
+
+    <nav class="menu-panel" aria-label="站内目录">
+      <a class="menu-link" href="index.html" data-close-menu data-i18n="menu_home">主页</a>
+      <a class="menu-link" href="about.html" data-close-menu data-i18n="menu_about">关于</a>
+      <a class="menu-link is-active" href="works.html" data-close-menu data-i18n="menu_works">作品</a>
+      <a class="menu-link" href="notes.html" data-close-menu data-i18n="menu_notes">杂谈</a>
+      <a class="menu-link" href="contact.html" data-close-menu data-i18n="menu_contact">联系</a>
+    </nav>
+
+    <div class="menu-bottom">
+      <a class="menu-bottom__item"
+         href="https://www.youtube.com/@GiovanepoliedricoHan"
+         target="_blank" rel="noopener noreferrer">
+        <span>Youtube</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+
+      <a class="menu-bottom__item"
+         href="https://www.instagram.com/dihan.mi"
+         target="_blank" rel="noopener noreferrer">
+        <span>Instagram</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+
+      <a class="menu-bottom__item"
+         href="https://space.bilibili.com/609838999"
+         target="_blank" rel="noopener noreferrer">
+        <span>哔哩哔哩</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+
+      <a class="menu-bottom__item"
+         href="works-web.html"
+         target="_blank" rel="noopener noreferrer">
+        <span>更多链接</span>
+        <img class="menu-arrow" src="assets/images/icon-arrow.png" alt="">
+      </a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 联系页主体 -->
+    <section class="contact-page" id="contact">
+
+      <h1 class="contact-title">联系我</h1>
+
+      <div class="contact-stack">
+
+        <!-- 表单卡片 -->
+        <div class="contact-card">
+          <div class="contact-card__label">给我发送邮件</div>
+
+          <!-- 你之后可以接 EmailJS / Formspree / 后端接口 -->
+          <form class="contact-form" action="https://formspree.io/f/xbdrqkqb" method="POST">
+            <div class="contact-form__row">
+              <input class="contact-input"type="text"name="name"placeholder="你是谁？"required>
+              <input class="contact-input" type="email" name="email" placeholder="你的邮箱" autocomplete="email" required>
+            </div>
+
+            <textarea class="contact-textarea"name="message"placeholder="你的需求"required></textarea>
+
+            <input type="hidden" name="_subject" value="来自网站联系页的新消息">
+
+            <!-- ✅ 发送按钮：复用首页「在这里找到我」的按钮样式 -->
+            <button class="account-cta-button contact-send" type="submit">发送</button>
+          </form>
+        </div>
+
+        <!-- 邮箱条 -->
+        <div class="contact-strip">
+          <div class="contact-strip__label">邮箱</div>
+          <a class="contact-strip__value menu-link" href="mailto:dihanmilano@gmail.com">dihanmilano@gmail.com</a>
+        </div>
+
+        <!-- 6 个社媒方块 -->
+        <div class="contact-grid">
+          <a class="contact-tile" href="https://www.youtube.com/@GiovanepoliedricoHan" target="_blank" rel="noopener noreferrer">
+            <img src="assets/icons/youtube.png" alt="YouTube">
+            <span class="menu-link">Youtube</span>
+          </a>
+
+          <a class="contact-tile" href="https://www.instagram.com/dihan.mi" target="_blank" rel="noopener noreferrer">
+            <img src="assets/icons/instagram.png" alt="Instagram">
+            <span class="menu-link">Instagram</span>
+          </a>
+
+          <!-- 你有 more 图标就放 assets/icons/more.svg -->
+          <a class="contact-tile" href="#" target="_blank" rel="noopener noreferrer">
+            <img src="assets/icons/more.png" alt="More">
+            <span class="menu-link">more</span>
+          </a>
+
+          <a class="contact-tile" href="https://space.bilibili.com/609838999" target="_blank" rel="noopener noreferrer">
+            <img src="assets/icons/bilibili.png" alt="哔哩哔哩">
+            <span class="menu-link">哔哩哔哩</span>
+          </a>
+
+          <!-- 你有小红书 icon 就换成 assets/icons/xhs.svg -->
+          <a class="contact-tile" href="https://www.xiaohongshu.com/user/profile/301579652" target="_blank" rel="noopener noreferrer">
+            <img src="assets/icons/xhs.png" alt="小红书">
+            <span class="menu-link">小红书</span>
+          </a>
+
+          <a class="contact-tile" href="works-web.html" target="_blank" rel="noopener noreferrer">
+            <img src="assets/icons/more.png" alt="更多链接">
+            <span class="menu-link">更多链接</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 页脚：与首页同款 -->
+    <section class="footer-icon-section">
+      <a href="#" class="footer-icon-btn">
+        <img src="assets/icons/door.svg" alt="更多" />
+      </a>
+    </section>
+
+    <nav class="hero-nav">
+      <a class="menu-link" href="index.html">主页</a>
+      <a class="menu-link" href="about.html">关于</a>
+      <a class="menu-link" href="works.html">作品</a>
+      <a class="menu-link" href="notes.html">杂谈</a>
+      <a class="menu-link" href="contact.html">联系</a>
+    </nav>
+
+    <section class="marquee-section">
+      <div class="marquee-track">
+        <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+        <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
