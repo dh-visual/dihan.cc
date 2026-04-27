@@ -169,7 +169,7 @@
 
 // === 目录页：点击右上角目录按钮，自上而下滑出纯黑整屏 ===
 (function () {
-  const menuBtn = document.querySelector(".icon-menu");
+  const menuBtn = document.querySelector("header .icon-menu");
   const overlay = document.querySelector("#menuOverlay");
   if (!menuBtn || !overlay) return;
 
@@ -207,12 +207,15 @@
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
 
-      // ✅ “关于”暂时不跳转：只关菜单
-      if (href === "#about") {
-        e.preventDefault();
-        closeMenu();
-        return;
-      }
+     // ✅ 页面跳转：about / contact 等
+     if (href && !href.startsWith("#")) {
+     // 先关菜单（避免视觉残留）
+     closeMenu();
+
+     // 然后正常跳转
+      window.location.href = href;
+      return;
+    }
 
       // ✅ “主页”回到真正页面顶部（显示导航栏）
       if (href === "#top") {
@@ -233,6 +236,55 @@
   });
 })();
 
+// === 目录页：自动高亮当前页面（给对应 .menu-link 加 is-active）===
+(function () {
+  const overlay = document.querySelector("#menuOverlay");
+  if (!overlay) return;
+
+  const links = overlay.querySelectorAll(".menu-panel .menu-link");
+  if (!links.length) return;
+
+  // 取得当前页面名：index / about / contact ...
+  const pathname = window.location.pathname || "";
+  const file = pathname.split("/").filter(Boolean).pop() || ""; // e.g. "about.html"
+  const page =
+    file === "" || file === "index.html" ? "home" :
+    file === "about.html" ? "about" :
+    file === "contact.html" ? "contact" :
+    "other";
+
+  function isMatch(link) {
+    const href = (link.getAttribute("href") || "").trim();
+
+    if (page === "home") {
+      // 主页可能写成：#top / /#top / index.html / /
+      return (
+        href === "#top" ||
+        href === "/#top" ||
+        href === "/" ||
+        href === "index.html" ||
+        href === "/index.html"
+      );
+    }
+
+    if (page === "about") return href.endsWith("about.html");
+    if (page === "contact") return href.endsWith("contact.html");
+
+    return false;
+  }
+
+  links.forEach((a) => {
+    a.classList.remove("is-active");
+    a.removeAttribute("aria-current");
+  });
+
+  const active = Array.from(links).find(isMatch);
+  if (active) {
+    active.classList.add("is-active");
+    active.setAttribute("aria-current", "page");
+  }
+})();
+
 // ===== i18n（中 / EN / IT）=====
 const I18N = {
   "zh-CN": {
@@ -240,7 +292,7 @@ const I18N = {
     menu_about: "关于",
     menu_works: "作品",
     menu_notes: "杂谈",
-    menu_contact: "联络",
+    menu_contact: "联系",
     about_title: "我是邸涵，",
     about_tagline:
       "跨界的真实创作者，在生活与工作之间不断重塑自我。空间<br />平面、设计、建模、视频、网站、光伏……我把经历化为创作素材。<br />",
@@ -433,4 +485,256 @@ function applyTranslations(lang) {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") close();
   });
+})();
+
+// === About Hero Image: Bottom-fixed linear breathing (NO side crop) ===
+(function () {
+  const box = document.querySelector(".motion-box");
+  const img = document.querySelector(".motion-img");
+  if (!box || !img) return;
+
+  const RANGE = 14;        // 容器高度上下变化范围（px）
+  const DURATION = 4000;   // 一次往返时长（ms）
+
+  let start = null;
+  let BASE_HEIGHT = 420;
+
+  // 0→1→0 匀速三角波
+  function triWave01(t01) {
+    return t01 < 0.5 ? t01 * 2 : (1 - t01) * 2;
+  }
+
+  // 用“渲染后的真实高度”计算 baseHeight（和当前图片宽度匹配）
+  function getRenderedImgHeight() {
+    const rect = img.getBoundingClientRect();
+    if (rect.height && rect.height > 0) return rect.height;
+
+    // 兜底：用 natural 尺寸按宽度等比算高
+    if (img.naturalWidth && img.naturalHeight) {
+      const w = rect.width || img.clientWidth || 420;
+      return (img.naturalHeight * w) / img.naturalWidth;
+    }
+    return 600;
+  }
+
+  function computeBaseHeight() {
+    const imgH = getRenderedImgHeight();
+
+    // 让容器“永远比图片矮”，从而只遮挡底部
+    const GAP = 40; // 遮挡量：越大遮挡越多
+    BASE_HEIGHT = Math.max(220, Math.round(imgH - GAP));
+
+    box.style.height = `${BASE_HEIGHT}px`;
+  }
+
+  // 等图片渲染完成再算（两帧更稳）
+  function recomputeSoon() {
+    requestAnimationFrame(() => {
+      computeBaseHeight();
+      requestAnimationFrame(computeBaseHeight);
+    });
+  }
+
+  if (img.complete) recomputeSoon();
+  else img.addEventListener("load", recomputeSoon);
+
+  function animate(ts) {
+    if (!start) start = ts;
+
+    const elapsed = (ts - start) % DURATION;
+    const t01 = elapsed / DURATION;
+
+    const wave = triWave01(t01); // 0→1→0
+    const height = BASE_HEIGHT + (wave - 0.5) * 2 * RANGE;
+
+    box.style.height = `${height}px`;
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+
+  window.addEventListener("resize", () => {
+    recomputeSoon();
+  });
+})();
+
+// === About Split Story: hard switch images (NO fade) ===
+(function () {
+  const root = document.querySelector("about.html-split-story");
+  if (!root) return;
+
+  const slides = Array.from(root.querySelectorAll(".about-split-story__img"));
+  if (slides.length <= 1) return;
+
+  const HOLD = 2600; // 每张停留时间（ms）想慢就加大
+  let idx = slides.findIndex((el) => el.classList.contains("is-active"));
+  if (idx < 0) idx = 0;
+
+  function show(next) {
+    slides[idx].classList.remove("is-active");
+    idx = next;
+    slides[idx].classList.add("is-active");
+  }
+
+  setInterval(() => {
+    show((idx + 1) % slides.length);
+  }, HOLD);
+})();
+
+// ===== About Timeline hover preview (positioned) =====
+(function () {
+  const list = document.getElementById("timelineList");
+  if (!list) return;
+
+  const preview = document.querySelector(".about-timeline__preview");
+  const img = document.querySelector(".about-timeline__preview-img");
+  const rightCol = document.querySelector(".about-timeline__right");
+
+  if (!preview || !img || !rightCol) return;
+
+  // 移动端通常不做 hover 预览
+  if (window.matchMedia("(max-width: 900px)").matches) return;
+
+  function positionToItem(item) {
+    const itemRect = item.getBoundingClientRect();
+    const rightRect = rightCol.getBoundingClientRect();
+
+    // 竖向：行中线
+    const centerY = itemRect.top + itemRect.height / 2;
+
+    // 横向：预览图的右边缘 = 右栏左边缘（紧贴）
+    const previewW = preview.offsetWidth || 220;
+    const leftX = rightRect.left - previewW - 1;
+
+    preview.style.top = `${centerY}px`;
+    preview.style.left = `${leftX}px`;
+  }
+
+  function showFor(item) {
+    const src = item.dataset.img;
+    if (src) img.src = src;
+    preview.classList.add("is-visible");
+    positionToItem(item);
+  }
+
+  function hide() {
+    preview.classList.remove("is-visible");
+  }
+
+  list.addEventListener("mouseover", (e) => {
+    const item = e.target.closest(".timeline-item");
+    if (!item) return;
+    showFor(item);
+  });
+
+  // 鼠标在列表内移动时，保持对齐（滚轮/字体渲染时更稳）
+  list.addEventListener("mousemove", (e) => {
+    const item = e.target.closest(".timeline-item");
+    if (!item || !preview.classList.contains("is-visible")) return;
+    positionToItem(item);
+  });
+
+  list.addEventListener("mouseleave", hide);
+
+  // 滚动/缩放时如果仍在某行上，继续对齐
+  window.addEventListener("scroll", () => {
+    const hovered = list.querySelector(".timeline-item:hover");
+    if (hovered && preview.classList.contains("is-visible")) positionToItem(hovered);
+  }, { passive: true });
+
+  window.addEventListener("resize", () => {
+    const hovered = list.querySelector(".timeline-item:hover");
+    if (hovered && preview.classList.contains("is-visible")) positionToItem(hovered);
+  });
+})();
+
+// === Works: Multi-row delayed reveal (row-by-row) ===
+(function () {
+  const grid = document.querySelector(".works-grid");
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll(".work-card"));
+  if (cards.length <= 2) return; // 只有一行就不用做
+
+  // 读取当前 grid 的列数（支持你未来变成 1列/3列）
+  function getColumnCount() {
+    const cols = getComputedStyle(grid).gridTemplateColumns;
+    // e.g. "1fr 1fr" / "repeat(2, minmax(0, 1fr))" 渲染后会变成多个长度值
+    return cols.split(" ").filter(Boolean).length || 2;
+  }
+
+  // 按列数切成多行：[[row1...],[row2...],...]
+  function buildRows() {
+    const colCount = Math.max(1, getColumnCount());
+    const rows = [];
+    for (let i = 0; i < cards.length; i += colCount) {
+      rows.push(cards.slice(i, i + colCount));
+    }
+    return { rows, colCount };
+  }
+
+  // 给“非首行”全部加控制类：is-reveal + 列标记（用于错峰）
+  function markRevealTargets(rows, colCount) {
+    rows.forEach((row, rIdx) => {
+      row.forEach((card, cIdx) => {
+        // 首行不隐藏
+        if (rIdx === 0) return;
+        card.classList.add("is-reveal", `is-col-${cIdx % colCount}`);
+      });
+    });
+  }
+
+  // 取某一行整体 bottom（包含图片+说明文字）
+  function getRowBottom(row) {
+    const bottoms = row.map((el) => el.getBoundingClientRect().bottom);
+    return Math.max.apply(null, bottoms);
+  }
+
+  let unlockedRowIndex = 0; // 已解锁到第几行（0=首行默认可见）
+
+  function unlockRow(rows, idx) {
+    if (!rows[idx]) return;
+    rows[idx].forEach((el) => el.classList.add("is-unlocked"));
+  }
+
+  function onScroll() {
+    const { rows } = state;
+    if (unlockedRowIndex >= rows.length - 1) {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      return;
+    }
+
+    const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+    const midline = vh / 2;
+
+    // 触发条件：上一行整体底部 < 视窗中线
+    const prevRow = rows[unlockedRowIndex];
+    const prevBottom = getRowBottom(prevRow);
+
+    if (prevBottom < midline) {
+      unlockedRowIndex += 1;
+      unlockRow(rows, unlockedRowIndex);
+    }
+  }
+
+  // 初始化
+  let state = buildRows();
+  markRevealTargets(state.rows, state.colCount);
+
+  // 等一帧再开启 transition，避免首帧误触发
+  requestAnimationFrame(() => {
+    document.body.classList.add("works-reveal-ready");
+  });
+
+  // 首次检查 + 监听
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    // 如果你未来会在 resize 时从 2列变 1列，这里重建 rows 更稳
+    state = buildRows();
+    // 注意：已解锁的行保持 unlockedRowIndex 不变即可
+    onScroll();
+  });
+
+  onScroll();
 })();
