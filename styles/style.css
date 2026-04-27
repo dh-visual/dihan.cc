@@ -1,3 +1,11 @@
+@font-face{
+  font-family: "Noto Sans SC";
+  src: url("assets/fonts/NotoSansSC-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "Noto Sans SC Display";
   src: url("assets/fonts/NotoSansSC-Black.ttf") format("truetype");
@@ -40,26 +48,10 @@ body {
     "Microsoft Yahei", system-ui, sans-serif;
 }
 .page-content {
-  background: #050505;
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
     system-ui, -webkit-pictograph, "PingFang SC", "Microsoft Yahei",
     "Helvetica Neue", Arial, sans-serif;
-}
-
-/* ===== 顶部导航栏 ===== */
-
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-
-  /* 改成完全透明背景 */
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 /* ===== 顶部导航栏 ===== */
@@ -72,7 +64,7 @@ body {
 
 .site-header__inner {
   width: 100%;
-  padding: 25px 30px; /* 左右更靠近屏幕边缘 */
+  padding: 25px 3vw; /* ✅ 与 works-section 完全同源 */
   display: flex;
   align-items: center;
 }
@@ -559,11 +551,6 @@ html[lang="it"] .about-left {
     border-color 0.25s ease;
 }
 
-/* ✅ hover 必须写在外面 */
-.service-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-}
-
 .service-card h2 {
   font-size: 22px;
   margin-bottom: 16px;
@@ -715,12 +702,7 @@ html[lang="it"] .about-left {
     0 0 8px rgba(255,250,240,0.80),
     0 0 16px rgba(255,247,238,0.55),
     0 0 32px rgba(255,245,236,0.35);
-}
 
-/* 可选：简单的 hover 效果 */
-.account-cta-button:hover {
-  background-color: #ffffff;
-  color: #000000;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
@@ -967,12 +949,6 @@ html[lang="it"] .marquee-track{
 
 .menu-overlay__close:hover{
   opacity: 1;
-}
-
-/* ===== 目录页（参考图样式） ===== */
-.menu-overlay{
-  background:#000;
-  z-index:9999;
 }
 
 .menu-panel{
@@ -1237,6 +1213,7 @@ body.is-locked {
 /* 让页面在所有设备都有“统一边距”可控 */
 :root{
   --gutter: clamp(16px, 4vw, 64px);
+  --about-inertia-y: 0px;
 }
 
 /* ---------- <= 1024px (平板横屏) ---------- */
@@ -1367,4 +1344,1381 @@ body.is-locked {
   .services-grid{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* ===============================
+   Contact Page — remove all borders
+================================ */
+
+/* 外卡片：无边框 */
+.contact-card,
+.contact-strip,
+.contact-tile{
+  border: none !important;
+}
+
+/* 内卡片（输入框）：无边框 */
+.contact-input,
+.contact-textarea{
+  border: none !important;
+}
+
+/* 大标题：与其它区块标题同辉光气质 */
+.contact-title{
+  margin-top: 22px;   /* ← 新增：让标题整体下移 */
+  margin-bottom: 0;
+  text-align: center;
+  font-size: clamp(96px, 10vw, 210px);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1;
+
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+
+  text-shadow:
+    0 0 4px rgba(255, 250, 240, 0.8),
+    0 0 14px rgba(255, 247, 238, 0.55),
+    0 0 32px rgba(255, 245, 236, 0.35);
+}
+
+.contact-stack{
+  width: min(600px, calc(100% - (var(--gutter, 24px) * 2)));
+  margin: 110px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 外卡片（深色层） */
+.contact-card,
+.contact-strip,
+.contact-tile{
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* 表单卡片 */
+.contact-card{
+  padding: 26px 18px 26px; /* 原来 18px 18px 16px：上更大、下变 0 */
+}
+
+.contact-card__label{
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  opacity: 0.70;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.contact-form{
+  display: grid;
+  gap: 16px;
+}
+
+.contact-form__row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;    /* ← 和 .contact-form 的 gap 完全一致 */
+}
+
+/* 内卡片（浅色层 / 输入区） */
+.contact-input,
+.contact-textarea{
+  width: 100%;
+  background: #313131;
+  border: 1px solid rgba(255,255,255,0.10);
+  color: #FFFCF5;
+  padding: 14px 14px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+}
+
+/* ✅ 只让“你的需求”更高 */
+.contact-textarea{
+  min-height: 140px;   
+  resize: vertical;
+}
+
+/* ✅ 给输入框一个正常高度（可选，但推荐，避免太扁） */
+.contact-input{
+  min-height: 56px;
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder{
+  color: rgba(255,255,255,0.30);
+}
+
+/* 发送按钮：复用 account-cta-button 的外观，但尺寸更贴合表单 */
+.contact-send{
+  width: 100%;
+
+  /* 字体与“联系我”同体系（黑体） */
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+
+  font-size: 16px;        /* 原来 14px → 稍微放大 */
+  font-weight: 600;       /* 明显更粗，但不浮夸 */
+  letter-spacing: 0.14em; /* 与整体 UI 呼应 */
+
+  padding: 18px 14px;     /* 保持与内卡片同高 */
+}
+
+/* 邮箱条 */
+.contact-strip{
+  padding: 18px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.contact-strip__label{
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  opacity: 0.70;
+}
+
+.contact-strip__value{
+  color: #FFFCF5;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+.contact-strip__value:hover{ opacity: 1; }
+
+/* 社媒 3x2 */
+.contact-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.contact-tile{
+  height: 135px;                /* ← 卡片整体更高（你之前也想要） */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;      /* 先居中整体 */
+  padding-top: 12px;            /* ← 整体略向下 */
+  gap: 14px;
+
+  text-decoration: none;
+  color: #FFFCF5;
+}
+
+/* Contact 社媒 icon：不压缩比例 */
+.contact-tile img{
+  width: 28px;      /* ← icon 变大（你可以试 32 / 36 / 40） */
+  height: auto;     /* ✅ 关键：取消正方形压缩 */
+  opacity: 0.9;
+  display: block;
+}
+
+.contact-tile span{
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  opacity: 0.85;
+}
+
+.contact-tile:hover{
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.18);
+}
+
+@media (max-width: 768px){
+  .contact-page{ padding-top: 100px; }
+  .contact-stack{ margin-top: 46px; }
+  .contact-form__row{ grid-template-columns: 1fr; }
+  .contact-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Contact page small labels — use sans-serif like inputs */
+.contact-card__label,
+.contact-strip__label{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+}
+
+/* 可选：如果 menu-link 默认是大写/加字距，你要保持一致就不动；
+   如果你发现它把中文变形（比如强制 uppercase），再告诉我，我给你做中文兼容的仅-contact 覆盖。 */
+
+/* ===============================
+   FINAL: Match footer nav (.hero-nav a) EXACTLY
+   Contact page only
+================================ */
+
+/* 邮箱：完全等同于 .hero-nav a */
+.contact-page .contact-strip__value{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.6 !important;
+  color: #FFFCF5 !important;
+  opacity: 1 !important;
+
+  text-decoration: none !important;
+  text-transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
+/* 社媒文字：完全等同于 .hero-nav a */
+.contact-page .contact-tile span{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.6 !important;
+  color: #FFFCF5 !important;
+  opacity: 1 !important;
+
+  text-decoration: none !important;
+  text-transform: none !important;
+}
+
+.footer-icon-section{
+  margin-top: 100px;
+}
+
+/* ===============================
+   About Page — Hero
+================================ */
+
+.about-page{
+  background:#000;
+}
+
+/* 首屏 */
+.about-hero{
+  padding: clamp(8px, 2vh, 24px) 0 0px;
+}
+
+/* ✅ About 首屏：三元素聚拢居中 */
+.about-hero-inner{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6vw;
+
+  display: grid;
+  grid-template-columns: auto auto auto;  /* 关键：不再用 1fr 拉开 */
+  align-items: center;
+  justify-content: center;               /* 关键：整体居中 */
+  gap: clamp(40px, 6vw, 110px);          /* 你想更紧凑就调小 */
+}
+
+/* 左右不再推到两边，保持自然居中队形 */
+.about-hero-word.left,
+.about-hero-word.right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 中间照片：无圆角、完整显示、不裁剪 */
+.about-photo img,
+.about-hero-photo img{
+  width: min(360px, 100%);
+  height: auto;          /* ✅ 关键：不要固定高度 */
+  border-radius: 0;      /* ✅ 去掉圆角 */
+  object-fit: contain;   /* ✅ 关键：不裁剪，完整显示 */
+  aspect-ratio: auto;    /* ✅ 如果你之前写了 1/1，这里等于取消 */
+  background: transparent;
+  box-shadow: none;
+  justify-self: center;            /* 水平居中于页面 */
+}
+
+
+/* ===============================
+   About Page — Text
+================================ */
+
+.about-text{
+  padding: 40px 0 80px;
+}
+
+.about-text-inner{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 6vw;
+
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.45);
+}
+
+.about-text-inner p{
+  margin-bottom: 20px;
+}
+
+/* 高亮文字 */
+.about-text .hl{
+  color: #FFFCF5;
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 900px){
+  .about-hero-inner{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-hero-word.left,
+  .about-hero-word.right{
+    justify-content: center;
+  }
+
+  .about-hero-photo img{
+    width: 240px;
+    height: 240px;
+  }
+}
+
+/* ===============================
+   About Hero — Right Text
+   Match .hero-title EXACTLY
+================================ */
+
+.about-hero-text{
+  /* 🔥 字体体系：与首页 hero-title 完全一致 */
+  font-family: "Noto Serif SC", serif;
+  font-weight: 900;
+
+  /* 字号：略小于首页“真实，与创造”，但同气质 */
+  font-size: clamp(84px, 10vw, 172px); /* ✅ 约 2 倍 */
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+
+  color: rgba(255, 252, 245);
+
+  /* 🔥 同款辉光（直接复制 hero-title） */
+  text-shadow:
+    0 0 4px rgba(255, 250, 240, 0.8),
+    0 0 14px rgba(255, 247, 238, 0.55),
+    0 0 32px rgba(255, 245, 236, 0.35);
+
+  /* 对齐 */
+  white-space: nowrap;
+}
+
+  /* ✅ 右侧：下移一点，让它更贴近照片底部 */
+.about-hero-word.right{
+  align-self: end;
+
+  /* 垂直：贴近照片底部 */
+  transform: translateY(-50px) translateX(48px); /* ← 新增 X 位移 */
+
+  justify-content: flex-start;
+}
+
+/* 右侧对齐微调（桌面端） */
+.about-hero-word.right{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 移动端居中 */
+@media (max-width: 900px){
+  .about-hero-text{
+    font-size: clamp(40px, 10vw, 72px);
+    text-align: center;
+  }
+}
+
+/* 左侧图片辉光（接近右侧文字的感觉） */
+.glow-img{
+  filter:
+    drop-shadow(0 0 3px rgba(255,250,240,.80))
+    drop-shadow(0 0 10px rgba(255,247,238,.45))
+    drop-shadow(0 0 22px rgba(255,245,236,.25));
+}
+
+/* ✅ 限制左侧 PNG 的尺寸，避免被 auto 列顶出视口 */
+.about-hero-word.left img{
+  width: clamp(195px, 23vw, 457px); /* ✅ 约为原来的 2/3 */
+  height: auto;
+  display: block;
+}
+
+/* 可选：右侧文字也更稳 */
+.about-hero-word.right{
+  justify-content: center !important;
+}
+
+/* ===== About hero: bottom-fixed vertical breathing ===== */
+.motion-stage{
+  /* 这个高度就是“基准舞台高度”（底部固定在这里） */
+  height: 560px;
+  display: flex;
+  align-items: flex-end;   /* ✅ 关键：让 motion-box 底部固定 */
+  justify-content: center;
+  position: relative;
+}
+
+/* ===== About photo motion (no side crop, only bottom mask) ===== */
+
+/* 让中间这一列“底部固定” */
+.about-hero-photo.motion-stage{
+  display: flex;
+  align-items: flex-end;     /* ✅ 底部固定基准 */
+  justify-content: center;
+}
+
+/* ===============================
+   About Hero Motion — FINAL OVERRIDE
+   (Paste at END of style.css)
+================================ */
+
+/* 中间这一列：底部固定基准 */
+.about-page .about-hero-photo.motion-stage{
+  display: flex;
+  align-items: flex-end;     /* ✅ 底部固定 */
+  justify-content: center;
+}
+
+/* 容器：宽度=图片宽度；高度<图片高；只裁底部（Y） */
+.about-page .motion-box{     
+  position: relative;
+  display: inline-block;     /* ✅ shrink-wrap */
+  width: fit-content;        /* ✅ 宽度=内容宽度 */
+  max-width: 100%;
+
+  overflow-y: hidden;        /* ✅ 只裁底部 */
+  overflow-x: visible;       /* ✅ 不裁左右 */
+
+  height: 420px;             /* 初始值（JS 会动态改） */
+  filter: none;
+  transform: translateY(-30px); /* 👈 数值你可以在 -16 ~ -48 微调 *//* 只上移中间照片整体 */
+}
+
+/* 图片：回到文档流（不要 absolute），这样容器才能“跟着图片宽度走” */
+.about-page .motion-img{
+  display: block;
+  width: clamp(290px, 25vw, 470px);
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+
+  /* ✅ 关键：不要 absolute / 不要 left:50% translateX */
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+
+  will-change: transform;
+}
+
+/* ===============================
+   About Page — Section 2 (Full-screen + Typography like Home About)
+   (Paste at END of style.css)
+================================ */
+
+.about-page .about-hero{
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;   /* 🔥 关键 */
+  padding-top: clamp(8px, 2vh, 24px);
+}
+
+.about-page .about-text{
+  /* ✅ 第二个区块独占一屏，并与首屏拉开距离 */
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(64px, 10vh, 120px) 
+           0 
+           clamp(64px, 10vh, 120px);
+}
+
+.about-page .about-text-inner{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 6vw;
+
+  /* 🔥 参考首页“跨界的真实创作者…”的正文气质 */
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+
+  color: rgba(255, 252, 245, 0.5);
+}
+
+.about-page .about-text-inner p{
+  margin: 0 0 28px;
+}
+
+.about-page .about-text .hl{
+  color: rgba(255, 252, 245);
+  font-weight: 500;
+}
+
+/* 英文/意大利语：取消首行缩进（与首页逻辑一致） */
+html[lang="en"] .about-page .about-text-inner p,
+html[lang="it"] .about-page .about-text-inner p{
+  text-indent: 0;
+}
+
+@media (max-width: 768px){
+  .about-page .about-text-inner{
+    font-size: 18px;
+  }
+  .about-page .about-text{
+    padding: 92px 0 92px;
+  }
+}
+
+/* 左侧发光 PNG（Dihan） */
+.about-page .about-hero-word.left .glow-img{
+  transform: translate3d(0, var(--about-inertia-y), 0);
+  will-change: transform;
+}
+
+/* 右侧发光文字（邸涵） */
+.about-page .about-hero-text{
+  transform: translate3d(0, var(--about-inertia-y), 0);
+  will-change: transform;
+}
+
+/* ===============================
+   About — Split Story (NEW)
+   左：sticky 全屏轮播 | 右：长文本
+================================ */
+
+.about-page .about-split-story{
+  background:#000;
+  color:rgba(255, 252, 245);
+
+  /* ✅ 控制它与上一个 about-text 的距离：想更近就再减小 */
+  padding: clamp(36px, 6vh, 72px) 0 clamp(72px, 12vh, 140px);
+}
+
+.about-page .about-split-story__inner{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6vw;
+
+  display: grid;
+  grid-template-columns: minmax(320px, 44%) 1fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+}
+
+/* 左栏：关键 sticky */
+.about-page .about-split-story__media{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+}
+
+.about-page .about-split-story__stage{
+  position: relative;
+  width: 100%;
+  height: 100vh;        /* ✅ 与视口同高 */
+  overflow: hidden;
+  background: #000;
+}
+
+/* 四张图叠放 */
+.about-page .about-split-story__img{
+  opacity: 0;
+  transform: none;
+  transition: none;       /* ✅ 关键：取消动画 */
+}
+
+.about-page .about-split-story__img.is-active{
+  opacity: 1;
+  transform: scale(1.00);
+}
+
+/* 右栏：沿用你 about-text 的气质 */
+.about-page .about-split-story__text{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+  color: rgba(255, 252, 245);
+}
+
+.about-page .about-split-story__title{
+  margin: 0 0 22px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(255, 252, 245, 0.85);
+}
+
+.about-page .about-split-story__text p{
+  margin: 0 0 18px;
+}
+
+/* 移动端：上下堆叠，取消 sticky（更自然） */
+@media (max-width: 900px){
+  .about-page .about-split-story__inner{
+    grid-template-columns: 1fr;
+  }
+  .about-page .about-split-story__media{
+    position: relative;
+    height: auto;
+  }
+  .about-page .about-split-story__stage{
+    height: 56vh;
+  }
+  .about-page .about-split-story__text{
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .about-page .about-split-story__img{
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ===============================
+   About Split Story — LEFT EDGE FIX
+================================ */
+
+/* 1️⃣ 整个区块不再给上下 padding（右栏仍然靠内容自然撑高） */
+.about-page .about-split-story{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* 2️⃣ 左栏 sticky 区：贴顶贴底 */
+.about-page .about-split-story__media{
+  align-items: stretch;   /* ❌ 不再居中 */
+}
+
+/* 3️⃣ 左侧画布：真正 100vh，无任何空隙 */
+.about-page .about-split-story__stage{
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Fix: About Split Story images should fully fit the 100vh stage === */
+.about-page .about-split-story__stage{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.about-page .about-split-story__img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  /* ✅ 完整展示，不裁切 */
+  object-fit: contain;
+  object-position: center;
+
+  opacity: 0;
+  transition: none;
+  transform: none;
+
+  display: block;
+}
+
+.about-page .about-split-story__img.is-active{
+  opacity: 1;
+}
+
+/* === About Split Story: WIDER (gutter = 1/3) === */
+.about-page .about-split-story__inner{
+  max-width: 1800px;      /* 原来 1400：更宽 */
+  padding: 0 3vw;         /* 原来 6vw：变为 1/2 */
+  gap: clamp(22px, 3vw, 64px);
+}
+
+.about-page .about-narrative-strong{
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+  font-size: 15px;
+  line-height: 1.42;
+  letter-spacing: 0;
+
+  font-weight: 700;   /* ← 现在真的会变厚 */
+  color: #FFFCF5;
+}
+
+/* ===============================
+   About Right Text — More Compact
+   =============================== */
+
+.about-page .about-split-story__text{
+  line-height: 1.36;      /* 原 ~1.4–1.5 → 明显更紧 */
+}
+
+.about-page .about-split-story__text p{
+  margin-bottom: 30px;    /* 原 ~18–22px → 更连贯 */
+}
+
+/* 最后一段不留多余空白 */
+.about-page .about-split-story__text p:last-child{
+  margin-bottom: 0;
+}
+
+/* ===============================
+   About Split Story — YOUR GOAL OVERRIDE
+   保持：左边缘/中间gap/右边缘的间距不变
+   实现：左图更大且贴顶贴底；右栏变窄
+================================ */
+
+/* 1) 保持左右 gutter 不变：你现在是 3vw，这里不改
+   2) 保持两列间 gap 不变：这里沿用你现在的 gap
+   3) 只改列宽比例：左更宽、右更窄 */
+.about-page .about-split-story__inner{
+  /* ✅ 把左列从 44% 提到 56%（你可在 52%~62% 微调） */
+  grid-template-columns: minmax(380px, 56%) minmax(320px, 44%);
+}
+
+/* 右侧文字栏：在自己的列里“靠右贴边”，同时限制最大阅读宽度 */
+.about-page .about-split-story__text{
+  justify-self: end;          /* ✅ 保持“右侧文本与右边缘”间距不变 */
+  max-width: 620px;           /* ✅ 右栏变窄（你可在 560~720 调） */
+  width: 100%;
+}
+
+/* 左栏：确保 sticky 区域就是整屏高度 */
+.about-page .about-split-story__media{
+  top: 0;
+  height: 100vh;
+}
+
+/* 左侧舞台：整屏 */
+.about-page .about-split-story__stage{
+  height: 100vh;
+}
+
+/* 左侧图片：必须 cover 才能贴顶贴底 */
+.about-page .about-split-story__img{
+  object-fit: cover;          /* ✅ 关键：贴紧上下边缘 */
+  object-position: center;    /* 你也可以试 center top */
+}
+
+/* 控制 About 第二区块 → 第三区块 的间距 */
+.about-page .about-text{
+  margin-bottom: clamp(100px, 20vh, 240px);
+}
+
+/* ===============================
+   About — New Block: Gene
+   (Paste at END of style.css)
+================================ */
+
+.about-page .about-gene{
+  background:#000;
+  padding: clamp(120px, 18vh, 240px) 0;
+}
+
+.about-page .about-gene__inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 6vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(66px, 11vh, 126px);   /* ✅ 标题 ↔ 卡片 更大一点 */
+}
+
+.about-page .about-gene__kicker{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: rgba(255, 252, 245, 0.85);
+}
+
+.about-page .about-gene__stack{
+  width: min(720px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(78px, 12vh, 144px);
+}
+
+.about-page .about-gene__card{
+  width: 100%;
+  min-height: clamp(120px, 16vh, 170px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 252, 245, 0.34);
+  background: transparent;
+
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 530;
+  letter-spacing: 0.06em;
+  color: rgba(255, 252, 245, 0.95);
+}
+
+/* 移动端收紧 */
+@media (max-width: 768px){
+  .about-page .about-gene{
+    padding: 110px 0;
+  }
+  .about-page .about-gene__kicker{
+    font-size: 14px;
+    letter-spacing: 0.18em;
+  }
+  .about-page .about-gene__stack{
+    gap: 34px;
+  }
+  .about-page .about-gene__card{
+    min-height: 110px;
+    font-size: 44px;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ===============================
+   About Gene — Kicker match "现代文艺复兴人"
+================================ */
+
+.about-page .about-gene__kicker{
+  /* 字体体系：与 about-text / 现代文艺复兴人 完全一致 */
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+
+  /* 字号 / 字重 / 行高 */
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.6;
+
+  /* 颜色：与 about-text 正文一致 */
+  color: #FFFCF5;
+
+  /* 清除它原来作为“kicker”的性格 */
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+/* ===============================
+   About — Timeline (Hover -> Preview)
+================================ */
+.about-page .about-timeline{
+  background:#000;
+  padding: clamp(120px, 18vh, 240px) 0;
+}
+
+.about-page .about-timeline__inner{
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 3vw; /* 和你 split-story 一致的窄 gutter */
+  display: grid;
+  grid-template-columns: minmax(260px, 34%) 1fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+}
+
+/* 左侧：标题 + 预览图（sticky 更像参考） */
+.about-page .about-timeline__left{
+  top: 90px;
+  align-self: start;
+}
+
+/* 预览容器：悬浮层，由 JS 计算位置 */
+.about-page .about-timeline__preview{
+  position: fixed;
+  left: 0;              /* JS 会覆盖 */
+  top: 0;               /* JS 会覆盖 */
+  z-index: 60;
+
+  width: 220px;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+  background: transparent;
+
+  opacity: 0;
+
+  /* 关键：top=行中线；translateY(-50%) 让图片中心对齐这条中线 */
+  transform: translateY(-50%) translateX(8px);
+  transition: opacity .18s ease, transform .18s ease;
+
+  pointer-events: none;
+}
+
+.about-page .about-timeline__preview.is-visible{
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.about-page .about-timeline__preview-img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* 右侧列表 */
+.about-page .about-timeline__right{
+  display: flex;
+  flex-direction: column;
+}
+
+/* 每一行：三列对齐（role / main / year） */
+.about-page .timeline-item{
+  display: grid;
+  grid-template-columns: 115px 1fr 70px;
+
+  column-gap: 0px;  /* 原 18 → 缩小 role ↔ main */
+  row-gap: 13px;
+
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+/* 取消时间轴第一行的顶部横线 */
+.about-page .timeline-item:first-child{
+  border-top: none;
+}
+
+/* 让 main ↔ year 仍然保持舒服的距离 */
+.about-page .timeline-item__main{
+  padding-right: 8px; /* 你可在 6~16px 微调 */
+}
+
+.about-page .timeline-item:last-child{
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+
+.about-page .timeline-item__role{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  color: rgba(255,252,245,0.9);
+}
+
+.about-page .timeline-item__main{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(255,252,245,0.9);
+}
+
+.about-page .timeline-item__year{
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  text-align: right;
+  color: rgba(255,252,245,0.9);
+}
+
+/* Hover：右侧轻微强调（不抢戏） */
+.about-page .timeline-item:hover .timeline-item__main{
+  color: #FFFCF5;
+}
+
+@media (max-width: 900px){
+  .about-page .about-timeline__inner{
+    grid-template-columns: 1fr;
+  }
+  .about-page .about-timeline__left{
+    position: relative;
+    top: auto;
+  }
+  .about-page .about-timeline__preview{
+    width: 180px;
+    margin-top: 18px;
+  }
+  .about-page .timeline-item{
+    grid-template-columns: 120px 1fr 60px;
+  }
+  .about-page .timeline-item__main{
+    font-size: 18px;
+  }
+}
+
+/* ===============================
+   About Timeline — Narrow Right Column
+================================ */
+
+.about-page .about-timeline__right{
+  justify-self: end;
+  max-width: 500px;
+
+  margin-right: 150px;
+  transform: translateY(100px); /* 40 → 56，更接近标题视觉重心 */
+}
+
+/* 时间轴标题：向右平移，仍属于左栏 */
+.about-page .about-timeline__title{
+  transform: translateX(160px);  /* 建议 32–64px 微调 */
+}
+
+/* About - “我的信条”标题辉光 */
+.about-page .about-gene__kicker{
+  text-shadow:
+    0 0 4px rgba(255, 250, 240, 0.80),
+    0 0 14px rgba(255, 247, 238, 0.55),
+    0 0 32px rgba(255, 245, 236, 0.35);
+}
+
+/* ===============================
+   About Timeline — Match About Body Style
+   (NO font-size change)
+================================ */
+
+.about-page .timeline-item__main{
+  /* 字体体系：与 about 正文一致 */
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+
+  /* 关键：恢复叙述性正文的“轻” */
+  font-weight: 300;
+
+  /* 字距收紧，避免 UI 感 */
+  letter-spacing: 0.01em;
+
+  /* 颜色回到正文语气（不是高亮） */
+  color: rgba(255, 252, 245, 0.85);
+}
+
+/* hover 时才强调，保持克制 */
+.about-page .timeline-item:hover .timeline-item__main{
+  color: rgba(255, 252, 245, 0.85);
+}
+
+/* 时间轴：右栏与左侧预览图的安全间距 */
+.about-page .about-timeline__right{
+  padding-left: 15px; /* 推荐 48–96px 自行微调 */
+}
+
+/* ===============================
+   Works Section (UPDATED)
+   目标：
+   1) 黑底不变
+   2) 两张一行更稳（窗口窄一点也不容易“放不下”）
+   3) 图片不压缩、不裁剪（完整显示）
+================================ */
+
+.works-section {
+  background: #000;
+
+  /* ✅ 关键：大屏仍接近 50px，小屏自动缩小 padding，确保两列能放下 */
+  padding: clamp(18px, 4vw, 50px);
+}
+
+.works-inner {
+  width: 100%;
+}
+
+/* 导语：宽度=第一张卡片宽度（两列时） */
+.works-intro{
+  margin: 0 0 14px 0;
+
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.80;
+  letter-spacing: 0.045em;
+  color: #FFFCF5;
+
+  font-family: "PingFang SC","Microsoft YaHei","Heiti SC","Noto Sans SC",sans-serif;
+
+  /* glow */
+  text-shadow:
+    0 0 4px rgba(255, 250, 240, 0.80),
+    0 0 14px rgba(255, 247, 238, 0.55),
+    0 0 32px rgba(255, 245, 236, 0.35);
+
+  /* single line (your final effect) */
+  max-width: none;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* ✅ 更稳的两列 */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 10px;   /* 横向不变 */
+  row-gap: 26px;      /* ✅ 竖向变大：控制“说明文字 → 下一行图片” */
+}
+
+/* ✅ Works 页：把左侧文字移到图片下方；只保留一行白色标题 */
+.works-section .work-card{
+  display: flex;
+  flex-direction: column;  /* 图片在上，文字在下 */
+  gap: 10px;               /* 图片与标题间距（你可改 6/8/12） */
+  text-decoration: none;
+}
+
+/* ✅ 关键：取消“压在图片上/贴左侧”的绝对定位 */
+.works-section .work-meta{
+  position: static !important;  /* 覆盖你之前可能写过的 absolute */
+  inset: auto !important;       /* 防止 top/left/right/bottom 残留 */
+  padding: 0 !important;
+   margin: 0 0 26px 0 !important;  /* ✅ 只在底部留白 */
+  display: block;
+}
+
+/* ✅ 图片：完整显示，不裁剪、不变形 */
+.work-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: contain;       /* ✅ 不裁剪 */
+  object-position: center;
+  background: #000;
+}
+
+/* 窄屏自动变 1 列，避免硬挤 */
+@media (max-width: 720px) {
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+  .works-intro {
+    max-width: 100%;
+  }
+}
+
+/* ===============================
+   Works — Text = Contact Youtube Font
+   =============================== */
+
+.works-section .work-title{
+  /* 字体体系：与 Contact 页 Youtube 完全一致 */
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Heiti SC",
+    "Noto Sans SC",
+    sans-serif;
+
+  font-size: 16px;        /* 与 Youtube 一致 */
+  font-weight: 300;
+  line-height: 1.6;
+
+  letter-spacing: 0.10em;
+  text-transform: none;
+
+  color: #FFFCF5;
+  opacity: 1;
+}
+
+/* ===============================
+   About — TEMP remove width limit
+   =============================== */
+
+.about-page .about-hero-inner{
+  max-width: none;     /* ✅ 取消宽度限制 */
+}
+
+/* ===============================
+   About Hero Title — NEVER wrap (final override)
+   =============================== */
+.about-page .about-hero-text{
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+/* 仅用于测试：允许更长标题横向溢出，不会被父容器裁掉 */
+.about-page .about-hero-inner,
+.about-page .about-hero-word.right{
+  overflow: visible !important;
+}
+
+/* ===============================
+   Works Page — tighter footer gap
+================================ */
+
+.works-section + .footer-icon-section{
+  margin-top: 50px;  /* 原来是 100px，这里略微收紧 */
+}
+
+/* ===============================
+   Menu Overlay — Works Page Glow Fix
+   =============================== */
+
+/* works 页：目录打开时，左栏所有目录项都有“基础辉光气质” */
+.page-works .menu-overlay.is-open .menu-panel .menu-link {
+  color: #FFFCF5;
+  opacity: 0.85;
+
+  text-shadow:
+    0 0 2px rgba(255, 250, 240, 0.45),
+    0 0 10px rgba(255, 247, 238, 0.25),
+    0 0 22px rgba(255, 245, 236, 0.15);
+}
+
+/* ===============================
+   Works — Row 2 delayed reveal (scroll-trigger)
+   规则：
+   - 首次进入：第一行正常展示
+   - 第二行：先隐藏，不随滚动立刻出现
+   - 当第一行整体底部上移到「视窗中线以上」时，第二行才允许出现
+   - 第二行从下方滑入：左卡片略早于右卡片（速度一致，轻微错峰）
+================================ */
+
+/* 初始：第二行隐藏（仍占位，避免布局跳跃） */
+/* 初始：所有“被控制的卡片”隐藏（仍占位） */
+.page-works .works-grid .work-card.is-reveal{
+  opacity: 0;
+  transform: translateY(90px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* 过渡就绪开关：避免首帧乱动 */
+.page-works.works-reveal-ready .works-grid .work-card.is-reveal{
+  transition:
+    transform 1560ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 1260ms ease;
+}
+
+/* 解锁后显示 */
+.page-works.works-reveal-ready .works-grid .work-card.is-reveal.is-unlocked{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* 同行错峰：左列先、右列后（列数会由 JS 自动标记） */
+.page-works.works-reveal-ready .works-grid .work-card.is-reveal.is-col-0{ transition-delay: 0ms; }
+.page-works.works-reveal-ready .works-grid .work-card.is-reveal.is-col-1{ transition-delay: 320ms; }
+
+/* 减少动画偏好：直接显示 */
+@media (prefers-reduced-motion: reduce){
+  .page-works .works-grid .work-card.is-reveal{
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: none !important;
+  }
+}
+
+/* 减少动画偏好：直接显示 */
+@media (prefers-reduced-motion: reduce){
+  .page-works .works-grid .work-card.is-row2{
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: none !important;
+  }
+}
+
+/* ===============================
+   Works — match Home Services gutter EXACTLY
+   =============================== */
+
+/* 1) 外层横向 padding：跟 .services-section 一致（桌面：3vw） */
+.works-section{
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
+
+/* 2) 网格最大宽度与居中：跟 .services-grid 一致（max-width + auto） */
+.works-grid{
+  max-width: 2100px;
+  margin: 0 auto;
+}
+
+/* 3) 平板及以下：跟你的首页响应式一致（<=1024 开始用 --gutter） */
+@media (max-width: 1024px){
+  .works-section{
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+  .site-header__inner{
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+}
+
+/* 4) 手机：你首页 <=768 也在用 --gutter，这里保持一致 */
+@media (max-width: 768px){
+  .works-section{
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+}
+
+/* ===============================
+   Project Page — Space 01
+   目标：
+   1) 导航栏固定在顶部并叠在图上
+   2) 按钮纯白，hover 不再变透明
+   3) 满宽英雄图 + 居中标题
+================================ */
+
+.page-project .site-header{
+  position: fixed;      /* ✅ 导航栏保持原位（顶部） */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 50;          /* ✅ 压在 hero 图上 */
+}
+
+/* 按钮纯白：不透明；hover 也不变化 */
+.page-project .site-logo img,
+.page-project .icon-btn img{
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+.page-project .icon-btn:hover img,
+.page-project .site-logo:hover img{
+  opacity: 1 !important; /* ✅ hover 不再变透明 */
+}
+
+/* 英雄区：整幅满宽图，图上居中标题 */
+.page-project .project-hero{
+  position: relative;
+  width: 100%;
+  height: 100vh;        /* 你要整屏就保留；想更矮可改成 80vh/70vh */
+  overflow: hidden;
+}
+
+.page-project .project-hero__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.page-project .project-hero__title{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+
+  font-family: "Microsoft YaHei","PingFang SC","Heiti SC","Noto Sans SC",sans-serif;
+
+  font-weight: 900;
+  font-size: clamp(88px, 12vw, 220px);
+  letter-spacing: 0.02em;
+  color: rgb(255, 255, 255);
+
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
 }
