@@ -2,27 +2,24 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>Works | Dihan 邸涵</title>
+  <title>杂谈 | Notes | Dihan 邸涵</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
 </head>
 
-<body class="page-works">
+<body class="page-project page-project-space-01">
   <div id="top"></div>
 
-  <!-- ✅ 导航栏：从 index.html 原样复制 -->
+  <!-- 导航栏：保持原位（固定在顶部），叠在英雄图上 -->
   <header class="site-header">
     <div class="site-header__inner">
-
-     <!-- 左侧 LOGO -->
-    <a href="index.html" class="site-logo" aria-label="回到首页">
-      <img src="assets/images/logo.png" alt="Dihan Logo" />
-    </a>
+      <a href="index.html" class="site-logo" aria-label="回到首页">
+        <img src="assets/images/logo.png" alt="Dihan Logo" />
+      </a>
 
       <div class="header-icons">
-        <!-- 语言切换 -->
         <div class="lang-switch" id="langSwitch">
           <button class="icon-btn icon-lang" id="langBtn" aria-label="切换语言" type="button">
             <img src="assets/images/icon-lang.png" alt="切换语言" />
@@ -35,16 +32,14 @@
           </ul>
         </div>
 
-        <!-- 目录按钮 -->
         <button class="icon-btn icon-menu" aria-label="打开导航菜单" type="button">
           <img src="assets/images/icon-menu.png" alt="导航菜单" />
         </button>
       </div>
-
     </div>
   </header>
 
-  <!-- ✅ 目录页：从 index.html 原样复制 -->
+  <!-- 目录页（复用你现有结构） -->
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <button class="menu-overlay__close" type="button" aria-label="关闭目录">
       <img class="menu-overlay__close-icon" src="assets/images/icon-close.png" alt="">
@@ -89,73 +84,13 @@
     </div>
   </div>
 
-  <main>
-    <!-- ✅ 你的作品区块：原样保留 -->
-    <section class="works-section" id="works">
-      <div class="works-inner">
-
-        <p class="works-intro">设计、工程与数字系统之间的实践者</p>
-
-        <div class="works-grid">
-          <a class="work-card" href="works-space.html">
-            <img src="assets/images/work-1.jpg" alt="LIEF Amsterdam" />
-            <div class="work-meta">
-              <span class="work-title">设计（空间）/建设中</span>
-            </div>
-          </a>
-
-          <a class="work-card" href="works-2.html">
-            <img src="assets/images/work-2.jpg" alt="Vita Architecture" />
-            <div class="work-meta">
-              <span class="work-title">设计（视觉艺术）/建设中</span>
-            </div>
-          </a>
-
-          <a class="work-card" href="works-3.html">
-            <img src="assets/images/work-3.jpg" alt="Dumpling TV" />
-            <div class="work-meta">
-              <span class="work-title">工程/建设中</span>
-            </div>
-          </a>
-
-          <a class="work-card" href="works-web.html">
-            <img src="assets/images/work-4.jpg" alt="Royal Air Force" />
-            <div class="work-meta">
-              <span class="work-title">数字系统</span>
-            </div>
-          </a>
-        </div>
-
-      </div>
+  <main class="project-main">
+    <!-- 英雄图：与网页宽度一致，图上居中标题 -->
+    <section class="project-hero" aria-label="杂谈">
+      <h1 class="project-hero__title">网页建设中</h1>
     </section>
-
-  <!-- 页脚：图标 -->
-  <section class="footer-icon-section">
-    <a href="#" class="footer-icon-btn">
-      <img src="assets/icons/door.svg" alt="更多" />
-    </a>
-  </section>
-
-  <!-- 底部文字导航 -->
-    <nav class="hero-nav">
-      <a class="menu-link" href="index.html">主页</a>
-      <a class="menu-link" href="about.html">关于</a>
-      <a class="menu-link" href="works.html">作品</a>
-      <a class="menu-link" href="notes.html">杂谈</a>
-      <a class="menu-link" href="contact.html">联系</a>
-    </nav>
-
-  <!-- 跑马灯 -->
-  <section class="marquee-section">
-    <div class="marquee-track">
-      <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
-      <span>邸涵 Dihan 邸涵 Dihan 邸涵 Dihan 邸涵 Dihan</span>
-    </div>
-  </section>
   </main>
 
-  <!-- ✅ 继续用同一个 main.js，让菜单/语言切换在 works 页也生效 -->
   <script src="scripts/main.js"></script>
 </body>
 </html>
-
